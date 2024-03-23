@@ -37,10 +37,11 @@
 		"axios": "^1.6.8",
 		"bits-ui": "^0.20.0",
 		"clsx": "^2.1.0",
-		"firebase": "^10.9.0",
+		"firebase": "^9.0.0",
 		"lucide-svelte": "^0.363.0",
 		"openai": "^4.29.2",
 		"svelte-icons": "^2.1.0",
+		"sveltefire": "^0.4.5",
 		"tailwind-merge": "^2.2.2",
 		"tailwind-variants": "^0.2.1"
 	}
