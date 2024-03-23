@@ -17,7 +17,7 @@
 </script> 
 
 
-<button on:click={() => clicker()} class="font-mono border border-white p-4 w-[250px] h-[200px] bg-slate-100 text-slate-600 rounded-md text-white hover:bg-black hover:text-white transition-all">
+<button on:click={() => clicker()} class="font-mono border border-white p-4 w-[250px] h-[200px] bg-slate-100 text-slate-600 rounded-md hover:bg-black hover:text-white transition-all">
   <p class="font-bold text-xl text-clip">{title}</p>
   <p>{description}</p>
 </button>
