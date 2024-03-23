@@ -1,11 +1,12 @@
 <script>
     import Navbar from "$lib/components/Navbar.svelte";
     import PageCard from "$lib/components/PageCard.svelte";
-        
+    import { Button } from "$lib/components/ui/button";
     import { onMount } from 'svelte';
     import FaChevronDown from 'svelte-icons/fa/FaChevronDown.svelte';
     import * as Menubar from "$lib/components/ui/menubar";
     import * as Select from "$lib/components/ui/select";
+    import { Input } from "$lib/components/ui/input";
 
 
     const getPages = async () => { 
@@ -31,7 +32,7 @@
 <Navbar />
 <div class="p-8">
     <div class="flex mt-4">
-        <div class="flex">
+        <navbar class="flex items-center justify-between w-full">
             <Select.Root>
                 <Select.Trigger class="w-[180px]">
                   <Select.Value placeholder="All Pages" />
@@ -42,7 +43,11 @@
                   <Select.Item value="math">MATH 152</Select.Item>
                 </Select.Content>
               </Select.Root>
-        </div>
+              <div class='flex items-end space-x-4 justify-end'>
+                <Input />
+                <Button variant="outline" target="_blank" href='https://www.notion.so/templates' class='text-white bg-black hover:text-black hover:border hover:bg-white drop-shadow-sm'>New</Button>
+              </div>
+        </navbar>
     </div>
         <div class="mt-8">
             <div class="grid grid-cols-5 gap-4 mt-4">
