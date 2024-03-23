@@ -41,20 +41,20 @@
     }
   
     function decrementCount() {
-        timeLeft--;
-        if (timeLeft === 0)
+      if (timeLeft === 0)
         {
             clearInterval(interval);
             console.log("correct")
             const gameRef = doc(firestore, "game/game");
             let asdf = $gameStore;
-            asdf.questionNumber = asdf.questionNumber + 1;
+            while (!(asdf.questionNumber))
+            {}
+            asdf.questionNumber = parseInt(teacher) + 1;
             setDoc(gameRef, asdf);
 
             const currentUrl = window.location.href;
           
             const url = new URL(currentUrl);
-            console.log(url.toString());
             let prefix = url.toString().substring(0, url.toString().length - 1);
 
             const lastChar = url.toString().charAt(url.toString().length - 1);
@@ -110,10 +110,8 @@
   
     const searchParams = $page.url.searchParams;
     const teacher = searchParams.get('teacher');
-    console.log(teacher)
   
     const questionStore = docStore(firestore, 'questions/' + teacher);
-    console.log(questionStore)
     async function asdfasdf()
     {
       const gameRef = doc(firestore, "game/game");
@@ -124,7 +122,6 @@
       asdf.answer4 = $questionStore.answer4;
       asdf.question = $questionStore.question;
       setDoc(gameRef, asdf);
-      console.log("HEE HEE HO")
     }
     $: {
       if (teacher && $questionStore)
@@ -146,7 +143,6 @@
           const currentUrl = window.location.href;
         
           const url = new URL(currentUrl);
-          console.log(url.toString());
           let prefix = url.toString().substring(0, url.toString().length - 1);
 
           const lastChar = url.toString().charAt(url.toString().length - 1);
