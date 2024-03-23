@@ -32,6 +32,8 @@
 
 <Navbar />
 <div class="p-8">
+    <a href="/lobby?teacher=1" class="bg-blue-500 px-8 py-3 rounded-md text-white font-bold min-w-[200px] text-center">Host Lobby</a>
+    <br><br>
     <p class="text-2xl font-semibold">Your pages</p>
     <div class="flex mt-4">
         <div class="flex">
@@ -40,14 +42,11 @@
                   <Select.Value placeholder="Theme" />
                 </Select.Trigger>
                 <Select.Content>
-                  <Select.Item value="light">Light</Select.Item>
+                  <Select.Item value="light">All pages</Select.Item>
                   <Select.Item value="dark">Dark</Select.Item>
                   <Select.Item value="system">System</Select.Item>
                 </Select.Content>
               </Select.Root>
-            <div class="w-3 h-3">
-                <FaChevronDown class="w-3 h-3" />
-            </div>
         </div>
     </div>
     {#each Object.entries(cate) as [subject, pages]}
