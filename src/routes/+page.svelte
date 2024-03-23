@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Navbar from "$lib/components/Navbar.svelte";
     import PageCard from "$lib/components/PageCard.svelte";
     import { Button } from "$lib/components/ui/button";
@@ -8,11 +8,10 @@
     import * as Select from "$lib/components/ui/select";
     import { Input } from "$lib/components/ui/input";
 
-
     const getPages = async () => { 
       const res = await fetch("/api/getpages");
-      const data = await res.json();
-      const extractedData = data.results
+      const d = await res.json();
+      const extractedData = d.results
       .filter(page => page.properties.Name.title.length > 0)
       .map(page => ({
         id: page.id,
@@ -25,7 +24,6 @@
 
     onMount(async () => {
       data = await getPages()
-      console.log(data)
     })
 </script>
 
@@ -52,7 +50,7 @@
         <div class="mt-8">
             <div class="grid grid-cols-5 gap-4 mt-4">
                 {#each data as page}
-                    <PageCard title={page.title} description="This is {page}" />
+                    <PageCard title={page.title} description="This is {page}" id={page.id} />
                 {/each}
             </div>
         </div>
