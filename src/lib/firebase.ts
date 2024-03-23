@@ -4,9 +4,8 @@ import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 import "../app.css";
 
-import { getAnalytics } from "firebase/analytics";
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyBL8fOg401kpS8a-7a0F6mLCt9oRgzBxg0",
   authDomain: "motion-16a40.firebaseapp.com",
   projectId: "motion-16a40",

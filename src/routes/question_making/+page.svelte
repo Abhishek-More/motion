@@ -13,6 +13,7 @@
   import { initializeApp } from "firebase/app";
   import { getFirestore } from "firebase/firestore";
   import { firebaseConfig } from "$lib/firebase";
+	import { onMount } from "svelte";
 
   let file: any;
   let result: any;
@@ -21,21 +22,6 @@
     file = e.target.files[0];
   }
 
-  // async function performOCR(imageSrc: any) {
-  //   console.log("Performing OCR" + imageSrc);
-  //   if (imageSrc) {
-  //     const {
-  //       data: { text },
-  //     } = await Tesseract.recognize(
-  //       imageSrc,
-  //       "eng"
-  //       // { logger: info => console.log(info) }
-  //     );
-  //     console.log("Finished OCR");
-  //     result = text;
-  //     sendToChatGPT(result);
-  //   }
-  // }
   async function sendToChatGPT(data: string) {
     try {
       const inputString =
@@ -60,7 +46,7 @@
         null,
         2
       );
-      console.log(ret_str);
+      console.log("Sending to Firebase :).");
       sendToFirebase(ret_str);
     } catch (error: any) {
       console.error("Error:", error.message);
@@ -90,37 +76,28 @@
       });
     }
   }
+
+ onMount(() => {
+    const submitButton = document.getElementById('submitButton');
+    const outputDiv = document.getElementById('output');
+      submitButton!.addEventListener('click', async function() {
+      const question = "Chemicals are cool :).";
+      console.log("Sending question to ChatGPT: " + question);
+      const response = await sendToChatGPT(question);
+      console.log(response);
+      outputDiv!.textContent = "Response from ChatGPT: " + response;
+    });
+ });
+
+    
+
 </script>
 
 <div
   class="flex flex-col items-center gap-4 justify-center h-[calc(100vh)] font-satoshi"
 >
-  <input
-    type="file"
-    on:change={chooseFile}
-    class="file:mr-4 file:py-2 file:px-4
-        file:rounded-full file:border-0
-        file:text-sm file:font-semibold
-        file:bg-blue-200 file:text-blue-700
-        hover:file:bg-blue-300 border-2 border-blue-200 p-4 rounded-lg font-medium"
-  />
-
-  <!-- {#if file}
-    <UploadTask ref="uploaded.jpg" data={file} let:progress let:snapshot>
-      {#if snapshot?.state === "running"}
-        {progress}% uploaded
-      {/if}
-
-      {#if snapshot?.state === "success"}
-        <DownloadURL ref={snapshot?.ref} let:link>
-            <div class="flex flex-row gap-2">
-                <button on:click={() => performOCR(link)} class="bg-blue-500 px-8 py-3 rounded-md text-white font-bold min-w-[200px] text-center">Generate</button>
-            </div>
-        </DownloadURL>
-      {/if}
-    </UploadTask>
-  {/if} -->
-
+    <button id="submitButton">Send Question</button>
+    <div id="output"></div>
   {#if result}
     <p>{result}</p>
   {/if}
