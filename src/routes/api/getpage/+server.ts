@@ -48,7 +48,8 @@ async function getPageContent(pageId) {
 
 export const GET: RequestHandler = async ({ url }) => {
 	const id = Number(url.searchParams.get('id') ?? '0');
-	const pageId = 'ebd4c32c-9f40-4a68-b846-95bf3d777cab';
+	const pageId = 'f76c08b7-658f-4b12-bf5a-91ae85c2cdfa';
+
 	const res = await getPageContent(pageId);
 
 	const returnObject = {

@@ -7,12 +7,14 @@
   import { sendToChatGPT } from "$lib/generator";
 
   const clicker = async () => {
-    console.log("clicked")
-    const res = await fetch(`/api/getpage?id=${id}`);
+    console.log("Clicked")
+    const params = new URLSearchParams({ id: id });
+    const url = `/api/getpage?${params.toString()}`;
+    const res = await fetch(url);
     const d = await res.json()
     console.log(d.body)
     const _ = await sendToChatGPT(d)
-    //goto("/")
+    goto("/lobby?teacher=1")
   }
 </script> 
 
