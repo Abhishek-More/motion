@@ -27,8 +27,9 @@
     })
 </script>
 
+
 <Navbar />
-<div class="p-8">
+<div class="p-8 bg-black">
     <div class="flex mt-4">
         <navbar class="flex items-center justify-between w-full">
             <Select.Root>
@@ -37,13 +38,13 @@
                 </Select.Trigger>
                 <Select.Content>
                   <Select.Item value="all">All Pages</Select.Item>
-                  <Select.Item value="chem">CHEM 107</Select.Item>
-                  <Select.Item value="math">MATH 152</Select.Item>
+                  <Select.Item value="chem">CHEM</Select.Item>
+                  <Select.Item value="math">MATH</Select.Item>
                 </Select.Content>
               </Select.Root>
               <div class='flex items-end space-x-4 justify-end'>
                 <Input />
-                <Button variant="outline" target="_blank" href='https://www.notion.so/templates' class='text-white bg-black hover:text-black hover:border hover:bg-white drop-shadow-sm'>New</Button>
+                <Button variant="outline" target="_blank" href='https://www.notion.so/templates' class='text-black bg-white hover:text-white hover:border hover:bg-black drop-shadow-sm'>New</Button>
               </div>
         </navbar>
     </div>
