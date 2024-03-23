@@ -1,7 +1,8 @@
 import { error } from '@sveltejs/kit';
 import axios from 'axios';
+import { NOTION_KEY, NOTION_PAGE_ID } from '$lib/notion_keys';
 
-/** @type {import('./$types').RequestHandler} */
+// /** @type {import('./$types').RequestHandler} */
 const key = NOTION_KEY;
 const id = NOTION_PAGE_ID;
 const api_url = 'https://api.notion.com/v1'
@@ -26,7 +27,7 @@ async function get_categories() {
     }
 }
 
-async function get_pages(categoryId) {
+async function get_pages(categoryId : any) {
     try {
         const response = await axios.post(`${dbend}/query`, null, { headers });
         const { results } = response.data;
