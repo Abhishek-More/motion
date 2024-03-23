@@ -12,6 +12,7 @@
     // import { goto } from '@sveltejs/kit';
 
     const gameStore = docStore(firestore, 'game/game');
+    const timeStore = docStore(firestore, 'timer/time');
     
     let timeLeft = 20;
   
@@ -48,17 +49,19 @@
   
         if ($gameStore && teacher)
         {
-          const gameRef = doc(firestore, "game/game");
-          let asdf = $gameStore;
+          const timeRef = doc(firestore, "timer/time");
+          let asdf = $timeStore;
           if (timeLeft === 0)
           {
             asdf.state = "reveal";
           }
           else
           {
+            asdf.time -= .5;
+            timeLeft = asdf.time;
             asdf.state = "playing";
           }
-          setDoc(gameRef, asdf);
+          setDoc(timeRef, asdf);
         }
     }
   
@@ -129,7 +132,10 @@
     
           console.log(prefix + incrementedString);
           let nextTeacher = teacher + 1;
-          
+          const timeRef = doc(firestore, "timer/time");
+          let bcd = $timeStore;
+          bcd.time = 20;
+          setDoc(timeRef, bcd);
           window.location.href = prefix + incrementedString;
         }
       
