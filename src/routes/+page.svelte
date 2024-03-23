@@ -1,33 +1,31 @@
 <script>
     import Navbar from "$lib/components/Navbar.svelte";
     import PageCard from "$lib/components/PageCard.svelte";
+        
+    import { onMount } from 'svelte';
     import FaChevronDown from 'svelte-icons/fa/FaChevronDown.svelte';
     import * as Menubar from "$lib/components/ui/menubar";
     import * as Select from "$lib/components/ui/select";
-    
-    let v = 0;
-    let cate = {
-        "🧪 CHEM 107 🧪": [
-            "Lec. 1",
-            "Lec. 2",
-            "Lec. 3",
-            "Lec. 4",
-            "Lec. 5",
-            "Lec. 6",
-            "Lec. 7",
-            "Lec. 8"
-        ],
-        "🔢 MATH 152 🔢": [
-            "Lec. 1",
-            "Lec. 2",
-            "Lec. 3",
-            "Lec. 4",
-            "Lec. 5",
-            "Lec. 6",
-            "Lec. 7",
-            "Lec. 8"
-        ]
-    };
+
+
+    const getPages = async () => { 
+      const res = await fetch("/api/getpages");
+      const data = await res.json();
+      const extractedData = data.results
+      .filter(page => page.properties.Name.title.length > 0)
+      .map(page => ({
+        id: page.id,
+        title: page.properties.Name.title[0].plain_text, 
+      }));
+      return extractedData;
+    }
+
+    let data = []
+
+    onMount(async () => {
+      data = await getPages()
+      console.log(data)
+    })
 </script>
 
 <Navbar />
@@ -47,14 +45,11 @@
               </Select.Root>
         </div>
     </div>
-    {#each Object.entries(cate) as [subject, pages]}
         <div class="mt-8">
-            <p class="text-xl font-semibold">{subject}</p>
-            <div class="grid grid-cols-5 gap-6 mt-4">
-                {#each pages as page}
-                    <PageCard title="{page}" description="Lorem ipsum dolor sit amet this is {page}" />
+            <div class="grid grid-cols-5 gap-4 mt-4">
+                {#each data as page}
+                    <PageCard title={page.title} description="This is {page}" />
                 {/each}
             </div>
         </div>
-    {/each}
 </div>
