@@ -46,7 +46,7 @@
         null,
         2
       );
-      console.log("Sending to Firebase :).");
+      console.log("Sending to Firebase :)." + ret_str);
       sendToFirebase(ret_str);
     } catch (error: any) {
       console.error("Error:", error.message);
@@ -60,12 +60,13 @@
       8,
       (str as string).length - 3
     );
+    // console.log(formattedStr)
     const tenQuestions = JSON.parse(formattedStr);
     for (var i = 1; i <= 10; i++) {
       const difficulty = 0.1 * i;
       const question = tenQuestions["question" + i];
       const answer = tenQuestions["answer" + i];
-      const docRef = await addDoc(collection(db, "questions"), {
+      const docRef = await setDoc(doc(db, "questions", i.toString()), {
         question: question,
         answer1: answer[0],
         answer2: answer[1],
