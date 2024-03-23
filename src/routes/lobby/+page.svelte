@@ -45,6 +45,31 @@
         if (timeLeft === 0)
         {
             clearInterval(interval);
+            console.log("correct")
+            const gameRef = doc(firestore, "game/game");
+            let asdf = $gameStore;
+            asdf.questionNumber = asdf.questionNumber + 1;
+            setDoc(gameRef, asdf);
+
+            const currentUrl = window.location.href;
+          
+            const url = new URL(currentUrl);
+            console.log(url.toString());
+            let prefix = url.toString().substring(0, url.toString().length - 1);
+
+            const lastChar = url.toString().charAt(url.toString().length - 1);
+            let number = parseInt(lastChar);
+        
+            number++;
+            let incrementedString = number.toString();
+      
+            console.log(prefix + incrementedString);
+            let nextTeacher = teacher + 1;
+            const timeRef = doc(firestore, "timer/time");
+            let bcd = $timeStore;
+            bcd.time = 20;
+            setDoc(timeRef, bcd);
+            window.location.href = prefix + incrementedString;
         }
   
         if ($gameStore && teacher)

@@ -1,1 +1,1 @@
-export const API_KEY = "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";
+export const API_KEY = "";
