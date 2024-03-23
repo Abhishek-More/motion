@@ -13,15 +13,7 @@ const options = {
 	}
 };
 
-export const GET: RequestHandler = () => {
-	axios
-		.request(options)
-		.then(function (response) {
-			console.log(response.data.results);
-			return new Response(JSON.stringify(response.data.results));
-		})
-		.catch(function (error) {
-			console.error(error);
-		});
+export const GET: RequestHandler = async () => {
+	const response = await axios.request(options);
+	return new Response(JSON.stringify(response.data));
 };
-

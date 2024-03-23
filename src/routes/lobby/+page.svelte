@@ -81,9 +81,10 @@
   
     const searchParams = $page.url.searchParams;
     const teacher = searchParams.get('teacher');
+    console.log(teacher)
   
     const questionStore = docStore(firestore, 'questions/' + teacher);
-  
+    console.log(questionStore)
     async function asdfasdf()
     {
       const gameRef = doc(firestore, "game/game");
