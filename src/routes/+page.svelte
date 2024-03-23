@@ -7,7 +7,7 @@
     
     let v = 0;
     let cate = {
-        "CHEM 107": [
+        "🧪 CHEM 107 🧪": [
             "Lec. 1",
             "Lec. 2",
             "Lec. 3",
@@ -17,7 +17,7 @@
             "Lec. 7",
             "Lec. 8"
         ],
-        "MATH 152": [
+        "🔢 MATH 152 🔢": [
             "Lec. 1",
             "Lec. 2",
             "Lec. 3",
@@ -34,7 +34,7 @@
 <div class="p-8">
     <a href="/lobby?teacher=1" class="bg-blue-500 px-8 py-3 rounded-md text-white font-bold min-w-[200px] text-center">Host Lobby</a>
     <br><br>
-    <p class="text-2xl font-semibold">Your pages</p>
+    <p class="text-2xl font-semibold">Your Pages</p>
     <div class="flex mt-4">
         <div class="flex">
             <Select.Root>
@@ -52,9 +52,9 @@
     {#each Object.entries(cate) as [subject, pages]}
         <div class="mt-8">
             <p class="text-xl font-semibold">{subject}</p>
-            <div class="grid grid-cols-5 gap-4 mt-4">
+            <div class="grid grid-cols-5 gap-6 mt-4">
                 {#each pages as page}
-                    <PageCard title="{page}" description="This is {page}" />
+                    <PageCard title="{page}" description="Lorem ipsum dolor sit amet this is{page}" />
                 {/each}
             </div>
         </div>
