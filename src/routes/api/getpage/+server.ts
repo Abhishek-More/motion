@@ -13,7 +13,7 @@ const options = {
 	}
 };
 
-export const GET: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = ({ url }) => {
 	const id = Number(url.searchParams.get('id') ?? '0');
 
 	axios
