@@ -47,7 +47,7 @@ export async function get() {
         let data = []
         for (let i = 0; i<categories.length;i++){
             let docs = await get_pages(categories[i]);
-            data.push({category: category.name, docs})
+            data.push({category: categories[i].name, docs})
         }
         return {
             status: 200,
