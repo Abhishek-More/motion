@@ -7,7 +7,7 @@
     
     let v = 0;
     let cate = {
-        "Chem 107": [
+        "CHEM 107": [
             "Lec. 1",
             "Lec. 2",
             "Lec. 3",
@@ -17,7 +17,7 @@
             "Lec. 7",
             "Lec. 8"
         ],
-        "Math 152": [
+        "MATH 152": [
             "Lec. 1",
             "Lec. 2",
             "Lec. 3",
@@ -42,9 +42,9 @@
                   <Select.Value placeholder="Theme" />
                 </Select.Trigger>
                 <Select.Content>
-                  <Select.Item value="light">All pages</Select.Item>
-                  <Select.Item value="dark">Dark</Select.Item>
-                  <Select.Item value="system">System</Select.Item>
+                  <Select.Item value="all">All pages</Select.Item>
+                  <Select.Item value="chem">CHEM 107</Select.Item>
+                  <Select.Item value="math">MATH 152</Select.Item>
                 </Select.Content>
               </Select.Root>
         </div>
