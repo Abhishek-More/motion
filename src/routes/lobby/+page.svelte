@@ -169,23 +169,24 @@
   
   <!-- <svelte:window bind:innerWidth bind:outerWidth bind:innerHeight bind:outerHeight /> -->
   
-  <div class="h-screen font-satoshi {$gameStore?.state === "reveal" ? "bg-green-100" : ""}">
+  <div class="h-screen font-satoshi {$gameStore?.state === "reveal" ? "bg-white" : ""}">
     {#if teacher}
-      <div class="flex flex-col justify-center w-screen h-[60px] bg-gray-200">
-        <p class="text-3xl text-center font-extrabold">
+      <div class="flex flex-col justify-center w-screen h-[60px] bg-black">
+        <p class="text-3xl text-center font-extrabold text-white">
           {$gameStore?.question}
         </p>
       </div>
+      <br>
       <p class="font-bold text-4xl text-center">{timeLeft}</p>
       <div class="flex justify-center mt-12">
-        <img src={images[randomNum]} class="object-cover h-[400px] w-[800px] rounded-lg" alt="img" />
+        <img src={images[randomNum]} class="object-cover h-[300px] w-[600px] rounded-lg" alt="img" />
       </div>
   
       <div class="mt-16 w-screen px-8 grid grid-cols-2 grid-rows-2 gap-4 font-bold">
-        <button on:click={() => {selectedIndex = 0;}} id="button1" class="bg-red-200 p-4 rounded-md   border-black {correctIndex === 0 && $gameStore?.state === "reveal" ? " border-4 " : ""}">{questions[0]}</button>
-        <button on:click={() => {selectedIndex = 1;}} id="button2" class="bg-blue-200 p-4 rounded-md   border-black {correctIndex === 1 && $gameStore?.state === "reveal" ? " border-4 " : ""}">{questions[1]}</button>
-        <button on:click={() => {selectedIndex = 2;}} id="button3" class="bg-green-200 p-4 rounded-md  border-black {correctIndex === 2 && $gameStore?.state === "reveal" ? " border-4 " : ""}">{questions[2]}</button>
-        <button on:click={() => {selectedIndex = 3;}} id="button4" class="bg-yellow-200 p-4 rounded-md border-black {correctIndex === 3 && $gameStore?.state === "reveal" ? " border-4 " : ""}">{questions[3]}</button>
+        <button on:click={() => {selectedIndex = 0;}} id="button1" class="bg-red-200 p-4 rounded-md   border-black">{questions[0]}</button>
+        <button on:click={() => {selectedIndex = 1;}} id="button2" class="bg-blue-200 p-4 rounded-md   border-black">{questions[1]}</button>
+        <button on:click={() => {selectedIndex = 2;}} id="button3" class="bg-green-200 p-4 rounded-md  border-black">{questions[2]}</button>
+        <button on:click={() => {selectedIndex = 3;}} id="button4" class="bg-yellow-200 p-4 rounded-md border-black">{questions[3]}</button>
       </div>
     {/if}
   
