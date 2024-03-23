@@ -8,13 +8,14 @@
     import { docStore } from 'sveltefire';
     import { firestore } from "$lib/firebase";
     import { doc, getDoc, setDoc } from 'firebase/firestore';
-      import { stringify } from 'postcss';
-  
+    import { stringify } from 'postcss';
+    // import { goto } from '@sveltejs/kit';
+
     const gameStore = docStore(firestore, 'game/game');
     
     let timeLeft = 20;
   
-    let selectedIndex = 0;
+    let selectedIndex = -1;
   
     function shuffle(array: any[]) {
       let currentIndex = array.length,  randomIndex;
@@ -104,6 +105,35 @@
       }
       
     }
+
+    $: {
+  
+        if (selectedIndex == correctIndex){
+          console.log("correct")
+          const gameRef = doc(firestore, "game/game");
+          let asdf = $gameStore;
+          asdf.questionNumber = asdf.questionNumber + 1;
+          setDoc(gameRef, asdf);
+
+          const currentUrl = window.location.href;
+        
+          const url = new URL(currentUrl);
+          console.log(url.toString());
+          let prefix = url.toString().substring(0, url.toString().length - 1);
+
+          const lastChar = url.toString().charAt(url.toString().length - 1);
+          let number = parseInt(lastChar);
+      
+          number++;
+          let incrementedString = number.toString();
+    
+          console.log(prefix + incrementedString);
+          let nextTeacher = teacher + 1;
+          
+          window.location.href = prefix + incrementedString;
+        }
+      
+    }
   </script>
   
   <!-- <svelte:window bind:innerWidth bind:outerWidth bind:innerHeight bind:outerHeight /> -->
@@ -121,36 +151,10 @@
       </div>
   
       <div class="mt-16 w-screen px-8 grid grid-cols-2 grid-rows-2 gap-4 font-bold">
-        <div id="button1" class="bg-red-200 p-4 rounded-md   border-black {correctIndex === 0 && $gameStore?.state === "reveal" ? " border-4 " : ""}">{questions[0]}</div>
-        <div id="button2" class="bg-blue-200 p-4 rounded-md   border-black {correctIndex === 1 && $gameStore?.state === "reveal" ? " border-4 " : ""}">{questions[1]}</div>
-        <div id="button3" class="bg-green-200 p-4 rounded-md  border-black {correctIndex === 2 && $gameStore?.state === "reveal" ? " border-4 " : ""}">{questions[2]}</div>
-        <div id="button4" class="bg-yellow-200 p-4 rounded-md border-black {correctIndex === 3 && $gameStore?.state === "reveal" ? " border-4 " : ""}">{questions[3]}</div>
-      </div>
-      <div class="flex justify-center gap-4 mt-12 font-bold">
-        <button class="rounded-md px-4 py-2 border-gray-700 bg-slate-500 text-white">
-          Next
-        </button>
-        <button class="rounded-md px-4 py-2 border-gray-700 bg-slate-500 text-white">
-          Previous
-        </button>
-        <button class="rounded-md px-4 py-2 border-gray-700 bg-slate-500 text-white">
-          Pause
-        </button>
-        <button class="rounded-md px-4 py-2 border-gray-700 bg-slate-500 text-white">
-          Pause
-        </button>
-      </div>
-    {:else}
-      <div class="flex justify-center my-12">
-        <img src={images[randomNum]} class="object-cover h-[200px] w-1/2 rounded-lg" alt="img" />
-      </div>
-  
-  
-      <div class="flex flex-col gap-4 mx-4 font-bold">
-        <button id="button1" on:click={() => {selectedIndex = 0;}} class="bg-red-200 p-4 rounded-md text-center border-black {selectedIndex === 0 ? "border-4" : ""}">Option 1</button>
-        <button id="button2" on:click={() => {selectedIndex = 1;}} class="bg-blue-200 p-4 rounded-md text-center border-black   {selectedIndex === 1 ? "border-4" : ""}">Option 2</button>
-        <button id="button3" on:click={() => {selectedIndex = 2;}} class="bg-green-200 p-4 rounded-md text-center border-black  {selectedIndex === 2 ? "border-4" : ""}">Option 3</button>
-        <button id="button4" on:click={() => {selectedIndex = 3;}} class="bg-yellow-200 p-4 rounded-md text-center border-black  {selectedIndex === 3 ? "border-4" : ""}">Option 4</button>
+        <button on:click={() => {selectedIndex = 0;}} id="button1" class="bg-red-200 p-4 rounded-md   border-black {correctIndex === 0 && $gameStore?.state === "reveal" ? " border-4 " : ""}">{questions[0]}</button>
+        <button on:click={() => {selectedIndex = 1;}} id="button2" class="bg-blue-200 p-4 rounded-md   border-black {correctIndex === 1 && $gameStore?.state === "reveal" ? " border-4 " : ""}">{questions[1]}</button>
+        <button on:click={() => {selectedIndex = 2;}} id="button3" class="bg-green-200 p-4 rounded-md  border-black {correctIndex === 2 && $gameStore?.state === "reveal" ? " border-4 " : ""}">{questions[2]}</button>
+        <button on:click={() => {selectedIndex = 3;}} id="button4" class="bg-yellow-200 p-4 rounded-md border-black {correctIndex === 3 && $gameStore?.state === "reveal" ? " border-4 " : ""}">{questions[3]}</button>
       </div>
     {/if}
   
