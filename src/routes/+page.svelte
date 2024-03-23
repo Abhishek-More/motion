@@ -32,8 +32,6 @@
 
 <Navbar />
 <div class="p-8">
-    <a href="/lobby?teacher=1" class="bg-blue-500 px-8 py-3 rounded-md text-white font-bold min-w-[200px] text-center">Host Lobby</a>
-    <br><br>
     <p class="text-2xl font-semibold">Your Pages</p>
     <div class="flex mt-4">
         <div class="flex">
