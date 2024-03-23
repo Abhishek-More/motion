@@ -28,12 +28,11 @@ async function get_categories() {
 
 async function get_pages(categoryId) {
     try {
-        res = []
         const response = await axios.post(`${dbend}/query`, null, { headers });
         const { results } = response.data;
         let res = results.filter(x => x.properties.category_id === categoryId);
         return res.filter(doc => ({
-            title: doc.properties.title.title;
+            title: doc.properties.title.title,
         }))
     }
     catch(error) {
