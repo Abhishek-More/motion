@@ -17,6 +17,7 @@
         id: page.id,
         title: page.properties.Name.title[0].plain_text, 
       }));
+      console.log(extractedData)
       return extractedData;
     }
 
@@ -51,7 +52,7 @@
         <div class="mt-8">
             <div class="grid grid-cols-5 gap-4 mt-4">
                 {#each data as page}
-                    <PageCard title={page.title} description="This is {page}" id={page.id} />
+                    <PageCard title={page.title} description={""} id={page.id} />
                 {/each}
             </div>
         </div>
