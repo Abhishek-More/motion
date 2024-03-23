@@ -28,15 +28,14 @@
 
 <Navbar />
 <div class="p-8">
-    <p class="text-2xl font-semibold">Your Pages</p>
     <div class="flex mt-4">
         <div class="flex">
             <Select.Root>
                 <Select.Trigger class="w-[180px]">
-                  <Select.Value placeholder="Theme" />
+                  <Select.Value placeholder="All Pages" />
                 </Select.Trigger>
                 <Select.Content>
-                  <Select.Item value="all">All pages</Select.Item>
+                  <Select.Item value="all">All Pages</Select.Item>
                   <Select.Item value="chem">CHEM 107</Select.Item>
                   <Select.Item value="math">MATH 152</Select.Item>
                 </Select.Content>
