@@ -22,7 +22,7 @@
     file = e.target.files[0];
   }
 
-  async function sendToChatGPT(data: string) {
+  export async function sendToChatGPT(data: string) {
     try {
       const inputString =
         "I have these lecture notes: " +

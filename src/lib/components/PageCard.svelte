@@ -1,10 +1,23 @@
 <script>
   export let title = '';
   export let description = '';
-  export let link = ""
+  export let id = ""
+
+  import { goto } from '$app/navigation';
+  import { sendToChatGPT } from "$lib/generator";
+
+  const clicker = async () => {
+    console.log("clicked")
+    const res = await fetch(`/api/getpage?id=${id}`);
+    const d = await res.json()
+    console.log(d.body)
+    const _ = await sendToChatGPT(d)
+    //goto("/")
+  }
 </script> 
 
-<a href={`/game/${link}`} class="border border-black p-4 w-[250px] h-[200px] rounded-md">
+
+<button on:click={() => clicker()} class="border border-black p-4 w-[250px] h-[200px] rounded-md">
   <p class="font-bold text-xl truncate">{title}</p>
   <p>{description}</p>
-</a>
+</button>
