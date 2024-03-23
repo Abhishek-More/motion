@@ -12,6 +12,7 @@
     // import { goto } from '@sveltejs/kit';
 
     const gameStore = docStore(firestore, 'game/game');
+    const timeStore = docStore(firestore, 'timer/time');
     
     let timeLeft = 20;
   
@@ -44,21 +45,48 @@
         if (timeLeft === 0)
         {
             clearInterval(interval);
+            console.log("correct")
+            const gameRef = doc(firestore, "game/game");
+            let asdf = $gameStore;
+            asdf.questionNumber = asdf.questionNumber + 1;
+            setDoc(gameRef, asdf);
+
+            const currentUrl = window.location.href;
+          
+            const url = new URL(currentUrl);
+            console.log(url.toString());
+            let prefix = url.toString().substring(0, url.toString().length - 1);
+
+            const lastChar = url.toString().charAt(url.toString().length - 1);
+            let number = parseInt(lastChar);
+        
+            number++;
+            let incrementedString = number.toString();
+      
+            console.log(prefix + incrementedString);
+            let nextTeacher = teacher + 1;
+            const timeRef = doc(firestore, "timer/time");
+            let bcd = $timeStore;
+            bcd.time = 20;
+            setDoc(timeRef, bcd);
+            window.location.href = prefix + incrementedString;
         }
   
         if ($gameStore && teacher)
         {
-          const gameRef = doc(firestore, "game/game");
-          let asdf = $gameStore;
+          const timeRef = doc(firestore, "timer/time");
+          let asdf = $timeStore;
           if (timeLeft === 0)
           {
             asdf.state = "reveal";
           }
           else
           {
+            asdf.time -= .5;
+            timeLeft = asdf.time;
             asdf.state = "playing";
           }
-          setDoc(gameRef, asdf);
+          setDoc(timeRef, asdf);
         }
     }
   
@@ -129,7 +157,10 @@
     
           console.log(prefix + incrementedString);
           let nextTeacher = teacher + 1;
-          
+          const timeRef = doc(firestore, "timer/time");
+          let bcd = $timeStore;
+          bcd.time = 20;
+          setDoc(timeRef, bcd);
           window.location.href = prefix + incrementedString;
         }
       
