@@ -13,7 +13,9 @@ const options = {
 	}
 };
 
-export const GET: RequestHandler = () => {
+export const GET: RequestHandler = async ({ url }) => {
+	const id = Number(url.searchParams.get('id') ?? '0');
+
 	axios
 		.request(options)
 		.then(function (response) {
@@ -24,4 +26,3 @@ export const GET: RequestHandler = () => {
 			console.error(error);
 		});
 };
-
