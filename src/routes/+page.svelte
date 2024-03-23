@@ -54,7 +54,7 @@
             <p class="text-xl font-semibold">{subject}</p>
             <div class="grid grid-cols-5 gap-6 mt-4">
                 {#each pages as page}
-                    <PageCard title="{page}" description="Lorem ipsum dolor sit amet this is{page}" />
+                    <PageCard title="{page}" description="Lorem ipsum dolor sit amet this is {page}" />
                 {/each}
             </div>
         </div>
