@@ -18,6 +18,6 @@
 
 
 <button on:click={() => clicker()} class="border border-black p-4 w-[250px] h-[200px] rounded-md">
-  <p class="font-bold text-xl truncate">{title}</p>
+  <p class="font-bold text-xl text-clip">{title}</p>
   <p>{description}</p>
 </button>
